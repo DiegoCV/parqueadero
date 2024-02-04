@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+  parqueadero_app:
+    build: parqueadero_app
+    depends_on:
+      parqueadero_db:
+        condition: service_healthy
+    ports:
+      - 8080:8080
+    networks:
+      - spring-postgres
+
+  mailapp:
+    build: mailapp
+    depends_on:
+      parqueadero_db:
+        condition: service_healthy
+    ports:
+      - 8081:8081
+    networks:
+      - spring-postgres
+      
+  parqueadero_db:
+    image: postgres:12.2
+    container_name: parqueadero_db
+    restart: always
+    volumes:
+      - ./parqueadero_db/schema-parqueadero.sql:/docker-entrypoint-initdb.d/schema-parqueadero.sql
+    networks:
+      - spring-postgres
+    environment:
+      - POSTGRES_DB=parqueadero
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+volumes:
+  db-data:
+networks:
+  spring-postgres:
