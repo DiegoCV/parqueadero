@@ -39,9 +39,9 @@ public class ParqueaderoController {
                 .body(toParqueaderoResponse(parqueaderoService.save(parqueadero)));
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity delete(@RequestBody ParqueaderoRequest parqueaderoRequest){
-        parqueaderoService.delete(UUID.fromString(parqueaderoRequest.getId()));
+    @DeleteMapping("/delete/{parqueaderoId}")
+    public ResponseEntity delete(@PathVariable("parqueaderoId") UUID parqueaderoId){
+        parqueaderoService.delete(parqueaderoId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

@@ -12,6 +12,7 @@ public interface VehiculoRepository {
     Vehiculo save(Vehiculo vehiculo);
     Vehiculo findByPlaca(String placa);
     List<VehiculoInside> findAllInside();
+    List<Vehiculo> findVehiculosByParqueadero(UUID parqueaderoId);
 
     List<PrimerIndicador> findVehiclesMoreRegistred();
     List<PrimerIndicador> findVehiclesMoreRegistred(UUID usuarioId);
@@ -29,4 +30,6 @@ public interface VehiculoRepository {
 
     Vehiculo findRegisterVehiculoByPlaca(String placa);
     Vehiculo findRegisterVehiculoByPlaca(UUID usuarioId, String placa);
+
+    List<Vehiculo> findVehiculosByUsuarioAndParqueadero(UUID usuarioId, UUID parqueaderoId);
 }

@@ -1,8 +1,13 @@
 package com.nelumbo.parqueadero.services.vehiculo;
 
 import com.nelumbo.parqueadero.services.authentication.AuthenticationService;
+import com.nelumbo.parqueadero.services.authentication.JwtService;
 import com.nelumbo.parqueadero.services.authentication.model.Usuario;
-import com.nelumbo.parqueadero.services.vehiculo.model.*;
+import com.nelumbo.parqueadero.services.vehiculo.model.Ganancia;
+import com.nelumbo.parqueadero.services.vehiculo.model.PrimerIndicador;
+import com.nelumbo.parqueadero.services.vehiculo.model.SegundoIndicador;
+import com.nelumbo.parqueadero.services.vehiculo.model.Vehiculo;
+import com.nelumbo.parqueadero.services.vehiculo.model.VehiculoInside;
 import com.nelumbo.parqueadero.services.vehiculo.model.gateway.VehiculoRepository;
 import com.nelumbo.parqueadero.util.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +26,9 @@ public class VehiculoServiceImpl implements VehiculoService{
     @Autowired
     private VehiculoRepository vehiculoRepository;
 
+    @Autowired
+    private JwtService jwtService;
+
     @Override
     public Vehiculo findByPlacaIfNotExistSave(String placa) {
         Vehiculo vehiculo = vehiculoRepository.findByPlaca(placa);
@@ -34,6 +42,18 @@ public class VehiculoServiceImpl implements VehiculoService{
     @Override
     public List<VehiculoInside> findAllInside() {
         return vehiculoRepository.findAllInside();
+    }
+
+    @Override
+    public List<Vehiculo> findVehiculosByParqueadero(UUID parqueaderoId) {
+        UUID usuarioId = jwtService.extractUuid();
+        List<Vehiculo> vehiculosByParqueadero = new ArrayList<>();
+        if(isAdmin(usuarioId)){
+            vehiculosByParqueadero = vehiculoRepository.findVehiculosByParqueadero(parqueaderoId);
+        }else{
+            vehiculosByParqueadero = vehiculoRepository.findVehiculosByUsuarioAndParqueadero(usuarioId, parqueaderoId);
+        }
+        return vehiculosByParqueadero;
     }
 
     @Override

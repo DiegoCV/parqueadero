@@ -55,13 +55,13 @@ public class HttpSecurityConfig {
             authConfig.requestMatchers(HttpMethod.GET, "/api/parqueadero/list").hasAuthority(Permission.READ_PARK.name());
             authConfig.requestMatchers(HttpMethod.GET, "/api/parqueadero/*").hasAuthority(Permission.READ_PARK.name());
             authConfig.requestMatchers(HttpMethod.PUT, "/api/parqueadero/update").hasRole(Role.ADMINISTRATOR.toString());
-            authConfig.requestMatchers(HttpMethod.DELETE, "/api/parqueadero/delete").hasRole(Role.ADMINISTRATOR.toString());
+            authConfig.requestMatchers(HttpMethod.DELETE, "/api/parqueadero/delete/*").hasRole(Role.ADMINISTRATOR.toString());
 
 
             authConfig.requestMatchers(HttpMethod.POST, "/api/registro/entrada").hasAuthority(Permission.CREATE_REGISTERS.name());
             authConfig.requestMatchers(HttpMethod.POST, "/api/registro/salida").hasAuthority(Permission.CREATE_REGISTERS.name());
 
-            authConfig.requestMatchers(HttpMethod.GET, "/api/vehiculo/listarParqueados").hasAuthority(Permission.READ_VEHICULOS.name());
+            authConfig.requestMatchers(HttpMethod.GET, "/api/vehiculo/listarByParqueadero/*").hasAuthority(Permission.READ_VEHICULOS.name());
             authConfig.requestMatchers(HttpMethod.POST, "/api/vehiculo/enviarCorreo").hasAuthority(Permission.SEND_EMAIL.name());
 
             authConfig.requestMatchers(HttpMethod.POST, "/api/vehiculo/indicador").hasAnyRole(Role.ADMINISTRATOR.toString(), Role.SOCIO.toString());

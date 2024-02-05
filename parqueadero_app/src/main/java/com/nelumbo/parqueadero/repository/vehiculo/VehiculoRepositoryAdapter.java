@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Repository
 public class VehiculoRepositoryAdapter extends AdapterOperations<Vehiculo, VehiculoData, UUID, VehiculoDataRepository>
@@ -27,6 +28,12 @@ public class VehiculoRepositoryAdapter extends AdapterOperations<Vehiculo, Vehic
     @Override
     public List<VehiculoInside> findAllInside() {
         return repository.findAllInside();
+    }
+
+    @Override
+    public List<Vehiculo> findVehiculosByParqueadero(UUID parqueaderoId) {
+        return repository.findByParquederoId(parqueaderoId).stream()
+                .map(vehiculoData -> (Vehiculo)mapper.toEntity(vehiculoData)).collect(Collectors.toList());
     }
 
     @Override
@@ -87,6 +94,12 @@ public class VehiculoRepositoryAdapter extends AdapterOperations<Vehiculo, Vehic
     @Override
     public Vehiculo findRegisterVehiculoByPlaca(UUID usuarioId, String placa) {
         return (Vehiculo)mapper.toEntity(repository.findRegisterVehiculoByPlaca(usuarioId, placa));
+    }
+
+    @Override
+    public List<Vehiculo> findVehiculosByUsuarioAndParqueadero(UUID usuarioId, UUID parqueaderoId) {
+        return repository.findByUsuarioIdAndParquederoId(usuarioId, parqueaderoId).stream()
+                .map(vehiculoData -> (Vehiculo)mapper.toEntity(vehiculoData)).collect(Collectors.toList());
     }
 
 

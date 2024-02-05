@@ -1,14 +1,23 @@
 package com.nelumbo.parqueadero.controllers.vehiculo;
 
-import com.nelumbo.parqueadero.controllers.vehiculo.model.*;
+import com.nelumbo.parqueadero.controllers.vehiculo.model.Informe;
+import com.nelumbo.parqueadero.controllers.vehiculo.model.InformeCinco;
+import com.nelumbo.parqueadero.controllers.vehiculo.model.InformeDos;
+import com.nelumbo.parqueadero.controllers.vehiculo.model.MailRequest;
+import com.nelumbo.parqueadero.controllers.vehiculo.model.VehiculoResponse;
 import com.nelumbo.parqueadero.services.mail.ConsumidorApiService;
 import com.nelumbo.parqueadero.services.mail.model.Mail;
 import com.nelumbo.parqueadero.services.vehiculo.VehiculoService;
-import com.nelumbo.parqueadero.services.vehiculo.model.*;
+import com.nelumbo.parqueadero.services.vehiculo.model.Ganancia;
+import com.nelumbo.parqueadero.services.vehiculo.model.PrimerIndicador;
+import com.nelumbo.parqueadero.services.vehiculo.model.SegundoIndicador;
+import com.nelumbo.parqueadero.services.vehiculo.model.Vehiculo;
+import com.nelumbo.parqueadero.services.vehiculo.model.VehiculoInside;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,10 +37,10 @@ public class VehiculoController {
     @Autowired
     private ConsumidorApiService consumidorApiService;
 
-    @GetMapping("/listarParqueados")
-    public ResponseEntity<List<VehiculoResponse>> listarParqueados(){
-        return ResponseEntity.ok(vehiculoService.findAllInside().stream()
-                .map(this::toVehiculoResponse).collect(Collectors.toList()));
+    @GetMapping("/listarByParqueadero/{parqueaderoId}")
+    public ResponseEntity<List<Vehiculo>> listarVehiculosByParqueadero(
+            @PathVariable("parqueaderoId") UUID parqueaderoId){
+        return ResponseEntity.ok(vehiculoService.findVehiculosByParqueadero(parqueaderoId));
     }
 
     @PostMapping("/enviarCorreo")

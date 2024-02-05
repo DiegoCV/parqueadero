@@ -17,6 +17,24 @@ public interface VehiculoDataRepository extends CrudRepository<VehiculoData, UUI
     VehiculoData findByPlaca(String placa);
 
     @Query("""
+            SELECT DISTINCT vd FROM VehiculoData vd
+            INNER JOIN RegistroData rd
+            ON vd.id = rd.vehiculoId
+            WHERE rd.parqueaderoId = ?1
+            """)
+    List<VehiculoData> findByParquederoId(UUID parqueaderoId);
+
+    @Query("""
+            SELECT DISTINCT vd FROM VehiculoData vd
+            INNER JOIN RegistroData rd
+            ON vd.id = rd.vehiculoId
+            INNER JOIN ParqueaderoData pd
+            ON rd.parqueaderoId = pd.id
+            WHERE pd.usuarioId = ?1 AND rd.parqueaderoId = ?2
+            """)
+    List<VehiculoData> findByUsuarioIdAndParquederoId(UUID usuarioId, UUID parqueaderoId);
+
+    @Query("""
                 SELECT new com.nelumbo.parqueadero.services.vehiculo.model.VehiculoInside(
                     vd.id, vd.placa, rd.entry, p.nombre) 
                 FROM VehiculoData vd

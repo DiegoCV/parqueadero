@@ -9,10 +9,13 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.security.Key;
 import java.util.Date;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class JwtService {
@@ -45,8 +48,19 @@ public class JwtService {
         return extractAllClaims(jwt).getSubject();
     }
 
+    public UUID extractUuid() {
+        String token = getBearerToken();
+        token = token.replace("Bearer ","");
+        String uuid = extractAllClaims(token).get("uuid", String.class);
+        return UUID.fromString(uuid);
+    }
+
     private Claims extractAllClaims(String jwt) {
         return Jwts.parserBuilder().setSigningKey(generateKey()).build()
                 .parseClaimsJws(jwt).getBody();
+    }
+
+    private String getBearerToken() {
+        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getHeader("Authorization");
     }
 }

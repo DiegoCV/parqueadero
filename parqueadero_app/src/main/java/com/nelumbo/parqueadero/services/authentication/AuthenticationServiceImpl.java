@@ -58,6 +58,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
 
         Map<String, Object> extraClaims = new HashMap<>();
         extraClaims.put("role", user.getRole().name());
+        extraClaims.put("uuid", user.getId());
         extraClaims.put("permissions", user.getAuthorities());
 
         return extraClaims;
