@@ -63,7 +63,6 @@ Dentro de la carpeta de **parqueadero_doc** podrá encontrar el postman con las 
 Recuerde que se está utilizando roles y por tanto debe usar el usuario correcto para acceder a ellas. A continuación un resumen de las operaciones:
 -   Administrador
 ```
--   login
 -   create user
 -   create parqueadero
 -   read parqueadero
@@ -82,6 +81,7 @@ Recuerde que se está utilizando roles y por tanto debe usar el usuario correcto
 ```
 -   Ambos (Administrador y socio)
 ```
+-   login
 -   logout
 -   listar vehiculos por parqueadero
 -   indicador 1 (10 vehiculos mas registrados en los diferentes parqueaderos)
