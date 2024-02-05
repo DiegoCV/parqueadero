@@ -82,7 +82,7 @@ Recuerde que se está utilizando roles y por tanto debe usar el usuario correcto
 ```
 -   Ambos (Administrador y socio)
 ```
--   listar vehiculos en un parqueadero
+-   listar vehiculos por parqueadero
 -   indicador 1
 -   indicador 2
 -   indicador 3

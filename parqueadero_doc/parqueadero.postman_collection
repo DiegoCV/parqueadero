@@ -39,10 +39,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/auth/authenticate",
+							"raw": "http://localhost:8080/api/auth/authenticate",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"auth",
@@ -54,7 +56,7 @@
 					"response": []
 				},
 				{
-					"name": "create",
+					"name": "create user",
 					"event": [
 						{
 							"listen": "test",
@@ -85,7 +87,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"socio5@mail.com\",\n    \"pass\": \"socio5\"\n}",
+							"raw": "{\n\t\"email\": \"socio2@mail.com\",\n    \"pass\": \"socio2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -93,10 +95,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/auth/create",
+							"raw": "http://localhost:8080/api/auth/create",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"auth",
@@ -113,7 +117,7 @@
 			"name": "parqueadero",
 			"item": [
 				{
-					"name": "create",
+					"name": "create parqueadero",
 					"event": [
 						{
 							"listen": "test",
@@ -144,7 +148,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"cars park\",\n    \"usuario\": \"{{socio_id}}\",\n    \"costo\": 1500,\n    \"capacidad\": 25\n}",
+							"raw": "{\n    \"nombre\": \"cars park 2\",\n    \"usuario\": \"{{socio_id}}\",\n    \"costo\": 1500,\n    \"capacidad\": 25\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -152,10 +156,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/parqueadero/create",
+							"raw": "http://localhost:8080/api/parqueadero/create",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"parqueadero",
@@ -167,7 +173,7 @@
 					"response": []
 				},
 				{
-					"name": "read",
+					"name": "read parqueadero",
 					"event": [
 						{
 							"listen": "test",
@@ -196,10 +202,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/parqueadero/38d7f5b1-b9f1-4f5d-90de-a692a7b04618",
+							"raw": "http://localhost:8080/api/parqueadero/38d7f5b1-b9f1-4f5d-90de-a692a7b04618",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"parqueadero",
@@ -239,10 +247,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/parqueadero/listAll",
+							"raw": "http://localhost:8080/api/parqueadero/listAll",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"parqueadero",
@@ -254,7 +264,7 @@
 					"response": []
 				},
 				{
-					"name": "listar parqueadero por usuario",
+					"name": "listar parqueaderos por socio",
 					"event": [
 						{
 							"listen": "test",
@@ -286,7 +296,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"usuario\":\"005c06e7-56c9-4c28-9182-b43d803890e0\"\r\n}",
+							"raw": "{\r\n    \"usuario\":\"75d53640-5557-4153-aec3-cfdfd69ab044\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -294,10 +304,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/parqueadero/list",
+							"raw": "http://localhost:8080/api/parqueadero/list",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"parqueadero",
@@ -309,7 +321,7 @@
 					"response": []
 				},
 				{
-					"name": "actualizar",
+					"name": "actualizar parqueadero",
 					"event": [
 						{
 							"listen": "test",
@@ -348,10 +360,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/parqueadero/update",
+							"raw": "http://localhost:8080/api/parqueadero/update",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"parqueadero",
@@ -363,7 +377,7 @@
 					"response": []
 				},
 				{
-					"name": "delete",
+					"name": "delete parqueadero",
 					"event": [
 						{
 							"listen": "test",
@@ -392,24 +406,18 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\" : \"38d7f5b1-b9f1-4f5d-90de-a692a7b04618\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{base_url}}/api/parqueadero/delete",
+							"raw": "http://localhost:8080/api/parqueadero/delete/38d7f5b1-b9f1-4f5d-90de-a692a7b04618",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"parqueadero",
-								"delete"
+								"delete",
+								"38d7f5b1-b9f1-4f5d-90de-a692a7b04618"
 							]
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
@@ -422,7 +430,7 @@
 			"name": "registro",
 			"item": [
 				{
-					"name": "entrada",
+					"name": "registrar entrada vehiculos",
 					"event": [
 						{
 							"listen": "test",
@@ -453,7 +461,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"placa\": \"DCV133\",\n    \"parqueaderoId\": \"38d7f5b1-b9f1-4f5d-90de-a692a7b04618\"\n}",
+							"raw": "{\n    \"placa\": \"DCV002\",\n    \"parqueaderoId\": \"aa0971ed-fb4f-48ca-a506-da968a872e2b\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -461,10 +469,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/registro/entrada",
+							"raw": "http://localhost:8080/api/registro/entrada",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"registro",
@@ -476,7 +486,7 @@
 					"response": []
 				},
 				{
-					"name": "salida",
+					"name": "registrar salida vehiculos",
 					"event": [
 						{
 							"listen": "test",
@@ -507,7 +517,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"placa\": \"DCV129\",\n    \"parqueaderoId\": \"f04a7257-b36e-43db-8c62-aa422f6678c7\"\n}",
+							"raw": "{\n    \"placa\": \"DCV001\",\n    \"parqueaderoId\": \"aa0971ed-fb4f-48ca-a506-da968a872e2b\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -515,10 +525,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/registro/salida",
+							"raw": "http://localhost:8080/api/registro/salida",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"registro",
@@ -535,7 +547,7 @@
 			"name": "vehiulos",
 			"item": [
 				{
-					"name": "listarVehiculosAdentro",
+					"name": "listar vehiculos dentro de un parqueadero",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -550,14 +562,17 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/vehiculo/listarParqueados",
+							"raw": "http://localhost:8080/api/vehiculo/listarByParqueadero/1958a0a6-b65b-4182-a752-6e0b5d33762b",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"vehiculo",
-								"listarParqueados"
+								"listarByParqueadero",
+								"1958a0a6-b65b-4182-a752-6e0b5d33762b"
 							]
 						}
 					},
@@ -569,7 +584,7 @@
 			"name": "mail",
 			"item": [
 				{
-					"name": "enviar",
+					"name": "enviar correo",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -585,7 +600,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"mail@mail.com\",\r\n    \"placa\": \"DCV123\",\r\n    \"mensaje\": \"Hola soy un correo\",\r\n    \"parqueaderoNombre\": \"cars\"\r\n}",
+							"raw": "{\r\n    \"email\": \"mail@mail.com\",\r\n    \"placa\": \"DCV002\",\r\n    \"mensaje\": \"Hola soy un correo\",\r\n    \"parqueaderoId\": \"aa0971ed-fb4f-48ca-a506-da968a872e2b\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -593,10 +608,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/vehiculo/enviarCorreo",
+							"raw": "http://localhost:8080/api/vehiculo/enviarCorreo",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"vehiculo",
@@ -624,22 +641,15 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"usuario\": \"{{admin_id}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{base_url}}/api/vehiculo/indicador",
+							"raw": "http://localhost:8080/api/vehiculo/indicador",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"vehiculo",
@@ -662,26 +672,20 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"parqueadero\": \"d63a6566-a978-4922-a92a-08001970b453\",\r\n    \"usuario\": \"{{admin_id}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{base_url}}/api/vehiculo/indicadorDos",
+							"raw": "http://localhost:8080/api/vehiculo/indicadorDos/d63a6566-a978-4922-a92a-08001970b453",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"vehiculo",
-								"indicadorDos"
+								"indicadorDos",
+								"d63a6566-a978-4922-a92a-08001970b453"
 							]
 						}
 					},
@@ -700,22 +704,15 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"usuario\": \"{{socio_id}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{base_url}}/api/vehiculo/indicadorTres",
+							"raw": "http://localhost:8080/api/vehiculo/indicadorTres",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"vehiculo",
@@ -738,26 +735,20 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"parqueadero\": \"d63a6566-a978-4922-a92a-08001970b453\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{base_url}}/api/vehiculo/indicadorCuatro",
+							"raw": "http://localhost:8080/api/vehiculo/indicadorCuatro/d63a6566-a978-4922-a92a-08001970b453",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"vehiculo",
-								"indicadorCuatro"
+								"indicadorCuatro",
+								"d63a6566-a978-4922-a92a-08001970b453"
 							]
 						}
 					},
@@ -776,26 +767,21 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"usuario\": \"{{admin_id}}\",\r\n    \"placa\": \"CV\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{base_url}}/api/vehiculo/indicadorCinco",
+							"raw": "http://localhost:8080/api/vehiculo/indicadorCinco/placa/CV",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"vehiculo",
-								"indicadorCinco"
+								"indicadorCinco",
+								"placa",
+								"CV"
 							]
 						}
 					},
