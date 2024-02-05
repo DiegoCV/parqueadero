@@ -47,7 +47,7 @@ public class VehiculoController {
     public String enviarCorreo(@RequestBody MailRequest mailRequest){
         String responseMail = consumidorApiService.enviarMail(Mail.builder().email(mailRequest.getEmail())
                 .placa(mailRequest.getPlaca()).mensaje(mailRequest.getMensaje())
-                .parqueaderoNombre(mailRequest.getParqueaderoNombre()).build());
+                .parqueaderoId(mailRequest.getParqueaderoId()).build());
         return responseMail;
     }
 

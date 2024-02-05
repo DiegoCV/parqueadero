@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Builder
 @AllArgsConstructor
 @Getter
@@ -13,5 +15,5 @@ public class Mail {
     private String email;
     private String placa;
     private String mensaje;
-    private String parqueaderoNombre;
+    private UUID parqueaderoId;
 }

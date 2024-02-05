@@ -9,6 +9,7 @@ public interface VehiculoService {
     Vehiculo findByPlacaIfNotExistSave(String placa);
     List<VehiculoInside> findAllInside();
     List<Vehiculo> findVehiculosByParqueadero(UUID parqueaderiId);
+    Vehiculo findVehiculoByPlacaInsideParqueadero(String placa, UUID parqueaderoId);
     List<PrimerIndicador> findIndicador1(UUID usuarioId);
     List<SegundoIndicador> findIndicador2(UUID parqueaderiId, UUID usuarioId);
     List<SegundoIndicador> findVehiclesWithOneRegistred(UUID usuarioId);

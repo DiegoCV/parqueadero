@@ -102,5 +102,10 @@ public class VehiculoRepositoryAdapter extends AdapterOperations<Vehiculo, Vehic
                 .map(vehiculoData -> (Vehiculo)mapper.toEntity(vehiculoData)).collect(Collectors.toList());
     }
 
+    @Override
+    public Vehiculo findVehiculoByPlacaInsideParqueadero(String placa, UUID parqueaderoId) {
+        return (Vehiculo) mapper.toEntity(repository.findVehiculoByPlacaInsideParqueadero(placa, parqueaderoId));
+    }
+
 
 }

@@ -32,4 +32,6 @@ public interface VehiculoRepository {
     Vehiculo findRegisterVehiculoByPlaca(UUID usuarioId, String placa);
 
     List<Vehiculo> findVehiculosByUsuarioAndParqueadero(UUID usuarioId, UUID parqueaderoId);
+
+    Vehiculo findVehiculoByPlacaInsideParqueadero(String placa, UUID parqueaderoId);
 }

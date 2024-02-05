@@ -2,6 +2,7 @@ package com.nelumbo.parqueadero.controllers.common;
 
 import com.nelumbo.parqueadero.services.common.ParqueaderoException;
 import com.nelumbo.parqueadero.services.common.RegistroException;
+import com.nelumbo.parqueadero.services.common.VehiculoExeption;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,10 @@ public class ErrorHandler {
         return new ResponseEntity<>(errorInfo, HttpStatus.BAD_REQUEST);
     }
 
-
+    @ExceptionHandler(VehiculoExeption.class)
+    public ResponseEntity<ErrorInfo> registroException(HttpServletRequest request, VehiculoExeption e) {
+        ErrorInfo errorInfo = new ErrorInfo(HttpStatus.BAD_REQUEST.value(), e.getMessage(), request.getRequestURI());
+        return new ResponseEntity<>(errorInfo, HttpStatus.BAD_REQUEST);
+    }
 
 }

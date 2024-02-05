@@ -1,17 +1,19 @@
-package com.nelumbo.parqueadero.controllers.vehiculo.model;
+package com.nelumbo.parqueadero.services.mail.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.ToString;
+import lombok.Setter;
 
 import java.util.UUID;
 
+@Builder
 @AllArgsConstructor
 @Getter
-@ToString
-public class MailRequest {
+@Setter
+public class MailReal {
     private String email;
     private String placa;
     private String mensaje;
-    private UUID parqueaderoId;
+    private String parqueaderoNombre;
 }

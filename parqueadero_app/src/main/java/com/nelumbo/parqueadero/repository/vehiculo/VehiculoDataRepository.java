@@ -180,4 +180,14 @@ public interface VehiculoDataRepository extends CrudRepository<VehiculoData, UUI
              and v.placa like %?2%
             """)
     VehiculoData findRegisterVehiculoByPlaca(UUID usuarioId, String placa);
+
+    @Query("""
+             select v from VehiculoData v
+             inner join RegistroData vp
+             on v.id = vp.vehiculoId
+             where v.placa like ?1
+             and vp.parqueaderoId = ?2 
+             and vp.exit is null             
+            """)
+    VehiculoData findVehiculoByPlacaInsideParqueadero(String placa, UUID parqueaderoId);
 }

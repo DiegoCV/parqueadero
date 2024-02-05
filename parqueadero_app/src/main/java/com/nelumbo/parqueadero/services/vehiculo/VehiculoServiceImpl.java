@@ -3,6 +3,7 @@ package com.nelumbo.parqueadero.services.vehiculo;
 import com.nelumbo.parqueadero.services.authentication.AuthenticationService;
 import com.nelumbo.parqueadero.services.authentication.JwtService;
 import com.nelumbo.parqueadero.services.authentication.model.Usuario;
+import com.nelumbo.parqueadero.services.common.VehiculoExeption;
 import com.nelumbo.parqueadero.services.vehiculo.model.Ganancia;
 import com.nelumbo.parqueadero.services.vehiculo.model.PrimerIndicador;
 import com.nelumbo.parqueadero.services.vehiculo.model.SegundoIndicador;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import static com.nelumbo.parqueadero.services.common.CommonExceptionMessages.VEHICULO_NO_SE_ENCUENTRA_EN_EL_PARQUEADERO;
 
 @Service
 public class VehiculoServiceImpl implements VehiculoService{
@@ -54,6 +57,15 @@ public class VehiculoServiceImpl implements VehiculoService{
             vehiculosByParqueadero = vehiculoRepository.findVehiculosByUsuarioAndParqueadero(usuarioId, parqueaderoId);
         }
         return vehiculosByParqueadero;
+    }
+
+    @Override
+    public Vehiculo findVehiculoByPlacaInsideParqueadero(String placa, UUID parqueaderoId) {
+        Vehiculo vehiculo = vehiculoRepository.findVehiculoByPlacaInsideParqueadero(placa, parqueaderoId);
+        if(vehiculo == null){
+            throw new VehiculoExeption(VEHICULO_NO_SE_ENCUENTRA_EN_EL_PARQUEADERO);
+        }
+        return vehiculo;
     }
 
     @Override
