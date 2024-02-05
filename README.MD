@@ -1,5 +1,5 @@
 ## Parqueadero App
-Aplicacion parqueadero para probar de forma sencilla la implementacion de una api rest con spring boot
+Aplicacion parqueadero para registrar la entrada y salida de vehiculos.
 
 ### Get started
 
@@ -78,15 +78,15 @@ Recuerde que se está utilizando roles y por tanto debe usar el usuario correcto
 -   registrar entrada de vehiculos
 -   registrar salida de vehiculos
 -   listar parqueaderos por socio
--   indicador 4
+-   indicador 4 (Ganancias hoy, semana, mes y año)
 ```
 -   Ambos (Administrador y socio)
 ```
 -   listar vehiculos por parqueadero
--   indicador 1
--   indicador 2
--   indicador 3
--   indicador 5
+-   indicador 1 (10 vehiculos mas registrados en los diferentes parqueaderos)
+-   indicador 2 (10 vehiculos mas registrados en un parqueadero en especifico)
+-   indicador 3 (Vehiculos parqueados por primera vez en los diferentes parqueaderos)
+-   indicador 5 (buscar vehiculos mediante coincidencia de placa)
 ```
 
 
