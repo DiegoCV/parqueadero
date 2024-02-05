@@ -1,8 +1,5 @@
 package com.nelumbo.parqueadero.controllers.vehiculo;
 
-import com.nelumbo.parqueadero.controllers.vehiculo.model.Informe;
-import com.nelumbo.parqueadero.controllers.vehiculo.model.InformeCinco;
-import com.nelumbo.parqueadero.controllers.vehiculo.model.InformeDos;
 import com.nelumbo.parqueadero.controllers.vehiculo.model.MailRequest;
 import com.nelumbo.parqueadero.controllers.vehiculo.model.VehiculoResponse;
 import com.nelumbo.parqueadero.services.mail.ConsumidorApiService;
@@ -25,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api/vehiculo", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -51,37 +47,33 @@ public class VehiculoController {
         return responseMail;
     }
 
-    @PostMapping("/indicador")
-    public ResponseEntity<List<PrimerIndicador>> inicador(@RequestBody Informe informe){
-        List<PrimerIndicador> indicador1 = vehiculoService
-                .findIndicador1(UUID.fromString(informe.getUsuario()));
+    @GetMapping("/indicador")
+    public ResponseEntity<List<PrimerIndicador>> inicador(){
+        List<PrimerIndicador> indicador1 = vehiculoService.findIndicador1();
         return ResponseEntity.ok(indicador1);
     }
 
-    @PostMapping("/indicadorDos")
-    public ResponseEntity<List<SegundoIndicador>> inicadorDos(@RequestBody InformeDos informe){
-        List<SegundoIndicador> indicador2 = vehiculoService.findIndicador2(UUID.fromString(informe.getParqueadero()),
-                UUID.fromString(informe.getUsuario()));
+    @GetMapping("/indicadorDos/{parqueaderoId}")
+    public ResponseEntity<List<SegundoIndicador>> inicadorDos(@PathVariable("parqueaderoId") UUID parqueaderoId){
+        List<SegundoIndicador> indicador2 = vehiculoService.findIndicador2(parqueaderoId);
         return ResponseEntity.ok(indicador2);
     }
 
-    @PostMapping("/indicadorTres")
-    public ResponseEntity<List<SegundoIndicador>> inicadorTres(@RequestBody Informe informe){
-        List<SegundoIndicador> vehiclesWithOneRegistred = vehiculoService
-                .findVehiclesWithOneRegistred(UUID.fromString(informe.getUsuario()));
+    @GetMapping("/indicadorTres")
+    public ResponseEntity<List<SegundoIndicador>> inicadorTres(){
+        List<SegundoIndicador> vehiclesWithOneRegistred = vehiculoService.findVehiclesWithOneRegistred();
         return ResponseEntity.ok(vehiclesWithOneRegistred);
     }
 
-    @PostMapping("/indicadorCuatro")
-    public ResponseEntity<Ganancia> inicadorCuatro(@RequestBody InformeDos informe){
-        Ganancia ganancia = vehiculoService.findGanancia(UUID.fromString(informe.getParqueadero()));
+    @GetMapping("/indicadorCuatro/{parqueaderoId}")
+    public ResponseEntity<Ganancia> inicadorCuatro(@PathVariable("parqueaderoId") UUID parqueaderoId){
+        Ganancia ganancia = vehiculoService.findGanancia(parqueaderoId);
         return ResponseEntity.ok(ganancia);
     }
 
-    @PostMapping("/indicadorCinco")
-    public ResponseEntity<Vehiculo> inicadorCinco(@RequestBody InformeCinco informe){
-        Vehiculo vehiculo = vehiculoService.findVehiculo(UUID.fromString(informe.getUsuario()),
-                informe.getPlaca());
+    @GetMapping("/indicadorCinco/placa/{placa}")
+    public ResponseEntity<Vehiculo> inicadorCinco(@PathVariable("placa") String placa){
+        Vehiculo vehiculo = vehiculoService.findVehiculo(placa);
         return ResponseEntity.ok(vehiculo);
     }
 

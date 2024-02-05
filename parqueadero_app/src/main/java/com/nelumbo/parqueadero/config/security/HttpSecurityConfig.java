@@ -64,11 +64,11 @@ public class HttpSecurityConfig {
             authConfig.requestMatchers(HttpMethod.GET, "/api/vehiculo/listarByParqueadero/*").hasAuthority(Permission.READ_VEHICULOS.name());
             authConfig.requestMatchers(HttpMethod.POST, "/api/vehiculo/enviarCorreo").hasAuthority(Permission.SEND_EMAIL.name());
 
-            authConfig.requestMatchers(HttpMethod.POST, "/api/vehiculo/indicador").hasAnyRole(Role.ADMINISTRATOR.toString(), Role.SOCIO.toString());
-            authConfig.requestMatchers(HttpMethod.POST, "/api/vehiculo/indicadorDos").hasAnyRole(Role.ADMINISTRATOR.toString(), Role.SOCIO.toString());
-            authConfig.requestMatchers(HttpMethod.POST, "/api/vehiculo/indicadorTres").hasAnyRole(Role.ADMINISTRATOR.toString(), Role.SOCIO.toString());
-            authConfig.requestMatchers(HttpMethod.POST, "/api/vehiculo/indicadorCuatro").hasAnyRole(Role.SOCIO.toString());
-            authConfig.requestMatchers(HttpMethod.POST, "/api/vehiculo/indicadorCinco").hasAnyRole(Role.ADMINISTRATOR.toString(), Role.SOCIO.toString());
+            authConfig.requestMatchers(HttpMethod.GET, "/api/vehiculo/indicador").hasAnyRole(Role.ADMINISTRATOR.toString(), Role.SOCIO.toString());
+            authConfig.requestMatchers(HttpMethod.GET, "/api/vehiculo/indicadorDos/*").hasAnyRole(Role.ADMINISTRATOR.toString(), Role.SOCIO.toString());
+            authConfig.requestMatchers(HttpMethod.GET, "/api/vehiculo/indicadorTres").hasAnyRole(Role.ADMINISTRATOR.toString(), Role.SOCIO.toString());
+            authConfig.requestMatchers(HttpMethod.GET, "/api/vehiculo/indicadorCuatro/*").hasAnyRole(Role.SOCIO.toString());
+            authConfig.requestMatchers(HttpMethod.GET, "/api/vehiculo/indicadorCinco/placa/*").hasAnyRole(Role.ADMINISTRATOR.toString(), Role.SOCIO.toString());
 
 
             authConfig.anyRequest().denyAll();

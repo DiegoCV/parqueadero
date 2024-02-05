@@ -10,9 +10,9 @@ public interface VehiculoService {
     List<VehiculoInside> findAllInside();
     List<Vehiculo> findVehiculosByParqueadero(UUID parqueaderiId);
     Vehiculo findVehiculoByPlacaInsideParqueadero(String placa, UUID parqueaderoId);
-    List<PrimerIndicador> findIndicador1(UUID usuarioId);
-    List<SegundoIndicador> findIndicador2(UUID parqueaderiId, UUID usuarioId);
-    List<SegundoIndicador> findVehiclesWithOneRegistred(UUID usuarioId);
+    List<PrimerIndicador> findIndicador1();
+    List<SegundoIndicador> findIndicador2(UUID parqueaderiId);
+    List<SegundoIndicador> findVehiclesWithOneRegistred();
     Ganancia findGanancia(UUID parqueaderoId);
-    Vehiculo findVehiculo(UUID usuarioId, String placa);
+    Vehiculo findVehiculo(String placa);
 }

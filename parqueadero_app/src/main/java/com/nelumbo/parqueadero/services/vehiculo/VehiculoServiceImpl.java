@@ -69,7 +69,8 @@ public class VehiculoServiceImpl implements VehiculoService{
     }
 
     @Override
-    public List<PrimerIndicador> findIndicador1(UUID usuarioId) {
+    public List<PrimerIndicador> findIndicador1() {
+        UUID usuarioId = jwtService.extractUuid();
         List<PrimerIndicador> vehiclesMoreRegistred = new ArrayList<>();
         if(isAdmin(usuarioId)){
             vehiclesMoreRegistred = vehiculoRepository.findVehiclesMoreRegistred();
@@ -81,7 +82,8 @@ public class VehiculoServiceImpl implements VehiculoService{
     }
 
     @Override
-    public List<SegundoIndicador> findIndicador2(UUID parqueaderoID, UUID usuarioId) {
+    public List<SegundoIndicador> findIndicador2(UUID parqueaderoID) {
+        UUID usuarioId = jwtService.extractUuid();
         List<SegundoIndicador> vehiclesMoreRegistred = new ArrayList<>();
         if(isAdmin(usuarioId)){
             vehiclesMoreRegistred = vehiculoRepository.findVehiclesMoreRegistredByParqueadero(parqueaderoID);
@@ -93,7 +95,8 @@ public class VehiculoServiceImpl implements VehiculoService{
     }
 
     @Override
-    public List<SegundoIndicador> findVehiclesWithOneRegistred(UUID usuarioId) {
+    public List<SegundoIndicador> findVehiclesWithOneRegistred() {
+        UUID usuarioId = jwtService.extractUuid();
         List<SegundoIndicador> vehiclesMoreRegistred = new ArrayList<>();
         if(isAdmin(usuarioId)){
             vehiclesMoreRegistred = vehiculoRepository.findVehiclesWithOneRegistred();
@@ -115,7 +118,8 @@ public class VehiculoServiceImpl implements VehiculoService{
     }
 
     @Override
-    public Vehiculo findVehiculo(UUID usuarioId, String placa) {
+    public Vehiculo findVehiculo(String placa) {
+        UUID usuarioId = jwtService.extractUuid();
         Vehiculo vehiculo = null;
         if(isAdmin(usuarioId)) {
             vehiculo = vehiculoRepository.findRegisterVehiculoByPlaca(placa);
