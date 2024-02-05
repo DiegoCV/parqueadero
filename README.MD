@@ -82,6 +82,7 @@ Recuerde que se está utilizando roles y por tanto debe usar el usuario correcto
 ```
 -   Ambos (Administrador y socio)
 ```
+-   logout
 -   listar vehiculos por parqueadero
 -   indicador 1 (10 vehiculos mas registrados en los diferentes parqueaderos)
 -   indicador 2 (10 vehiculos mas registrados en un parqueadero en especifico)
