@@ -13,8 +13,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -28,6 +30,9 @@ public class HttpSecurityConfig {
     @Autowired
     private JwtAuthenticationFilter authenticationFilter;
 
+    @Autowired
+    private LogoutHandler logoutHandler;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
@@ -37,7 +42,12 @@ public class HttpSecurityConfig {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS) )
             .authenticationProvider(authenticationProvider)
             .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .authorizeHttpRequests(builderRequestMatchers());
+                .authorizeHttpRequests(builderRequestMatchers())
+            .logout(logout ->
+                    logout.logoutUrl("/api/auth/logout")
+                        .addLogoutHandler(logoutHandler)
+                        .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
+        );
 
         return http.build();
     }

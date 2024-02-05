@@ -1,5 +1,6 @@
 package com.nelumbo.parqueadero.config.security.filter;
 
+import com.nelumbo.parqueadero.config.security.JwtBlacklist;
 import com.nelumbo.parqueadero.services.authentication.JwtService;
 import com.nelumbo.parqueadero.services.authentication.model.Usuario;
 import com.nelumbo.parqueadero.services.authentication.model.gateway.UsuarioRepository;
@@ -34,14 +35,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         //2. Obtener jwt desde header
         String jwt = authHeader.split(" ")[1];
-        //3. Obtener subject/username desde el jwt
-        String username = jwtService.extractUsername(jwt);
-        //4. Setear un objeto Authentication dentro del SecurityContext
-        Usuario user = userRepository.findByEmail(username).get();
-        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                username, null, user.getAuthorities()
-        );
-        SecurityContextHolder.getContext().setAuthentication(authToken);
+        if(!JwtBlacklist.isBlacklisted(jwt)) {
+            //3. Obtener subject/username desde el jwt
+            String username = jwtService.extractUsername(jwt);
+            //4. Setear un objeto Authentication dentro del SecurityContext
+            Usuario user = userRepository.findByEmail(username).get();
+            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                    username, null, user.getAuthorities()
+            );
+            SecurityContextHolder.getContext().setAuthentication(authToken);
+        }
         //5. Ejecutar el restro de filtros
         filterChain.doFilter(request, response);
     }
